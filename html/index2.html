@@ -13,25 +13,16 @@
             box-sizing: border-box;
         }
 
-        /* Disable smooth scrolling */
-        html {
-            /* scroll-behavior: auto; */
-            scroll-snap-type: y mandatory;
-            scroll-padding-top: 60px;
-        }
-
         body {
             background-color: black;
             color: white;
             font-family: 'Meera Inimai', sans-serif;
             height: 100vh;
             overflow-x: hidden;
-        }
-        .book{
-            
+            display: grid;
+            grid-template-rows: auto 1fr;
         }
 
-        /* Header (Fixed) */
         .header {
             position: fixed;
             top: 0;
@@ -46,82 +37,73 @@
             z-index: 1000;
         }
 
+        .menu {
+            display: flex;
+            gap: 15px;
+        }
+
         .menu a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
         }
 
-        /* Sections - Full screen */
+        .menu-toggle {
+            display: none;
+        }
+
         section {
             width: 100%;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            scroll-snap-align: start;
+            text-align: center;
         }
 
-        /* Main Text */
         .main-text {
             font-family: 'Monoton', cursive;
-            font-size: 225px;
-            text-align: left;
-            margin-left: 0px;
-            line-height: 225px;
-            margin-top: -50px;
+            font-size: 10vw;
+            line-height: 1.2;
         }
 
-        /* Skills Section */
         .skills-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
-            justify-content: flex-start;
-            padding-top: 80px;
-            position: relative;
+            justify-items: center;
+            padding: 50px;
         }
 
         .skills-title {
-            font-size: 55px;
+            font-size: 4vw;
             font-family: 'Monomaniac One', sans-serif;
-            margin-bottom: 20px;
-        }
-
-        .divider {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            width: 3px;
-            height: 60%;
-            background-color: white;
-            transform: translateX(-50%);
-        }
-
-        .skills-container {
-            width: 80%;
-            display: flex;
-            height: 60%;
-        }
-
-        .skills-left {
-            flex: 1;
+            grid-column: span 2;
+            text-align: center;
         }
 
         .skills-right {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 35px;
+            font-size: 2vw;
             text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .skills-section {
+                grid-template-columns: 1fr;
+            }
+            .skills-right {
+                font-size: 4vw;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header (Fixed, Always Visible) -->
     <div class="header">
         <div class="name"><b>Bhushitha Hashan</b></div>
         <div class="menu">
@@ -130,42 +112,27 @@
             <a href="#work">Work</a>
             <a href="#contact">Contact</a>
         </div>
+        <div class="menu-toggle">☰</div>
     </div>
-    <div class="book">
-        <!-- Home Section -->
+
     <section id="home">
-        <div class="main-text">
-            I'm a <br> Software <br> Developer.
-        </div>
+        <div class="main-text">I'm a <br> Software <br> Developer.</div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="skills-section">
         <div class="skills-title">SKILLS</div>
-        <div class="divider"></div>
-        <div class="skills-container">
-            <div class="skills-left"></div>
-            <div class="skills-right">
-                I'm proficient in <br>
-                JAVA, <br>
-                HTML, <br>
-                CSS, <br>
-                & Spring Framework.
-            </div>
+        <div class="skills-right">
+            I'm proficient in <br> JAVA, <br> HTML, <br> CSS, <br> & Spring Framework.
         </div>
     </section>
 
-    <!-- Work Section -->
     <section id="work">
         <h1>Work Experience</h1>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
-        <h1>Contact Me!!</h1>
+        <h1>Contact Me</h1>
     </section>
-    </div>
-    
 
 </body>
 </html>
