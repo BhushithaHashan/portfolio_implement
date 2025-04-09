@@ -1,171 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Meera+Inimai&family=Monoton&family=Monomaniac+One&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Meera+Inimai&family=Monoton&family=Monomaniac+One&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* Disable smooth scrolling */
-        html {
-            /* scroll-behavior: auto; */
-            scroll-snap-type: y mandatory;
-            scroll-padding-top: 60px;
-        }
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-padding-top: 60px;
+    }
 
-        body {
-            background-color: black;
-            color: white;
-            font-family: 'Meera Inimai', sans-serif;
-            height: 100vh;
-            overflow-x: hidden;
-        }
-        .book{
-            
-        }
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Meera Inimai', sans-serif;
+      height: 100vh;
+      overflow-x: hidden;
+    }
 
-        /* Header (Fixed) */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 22px;
-            padding: 20px;
-            background-color: black;
-            z-index: 1000;
-        }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 22px;
+      padding: 20px;
+      background-color: black;
+      z-index: 1000;
+    }
 
-        .menu a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
+    .name {
+      font-size: 22px;
+    }
 
-        /* Sections - Full screen */
-        section {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            scroll-snap-align: start;
-        }
+    .menu {
+      display: flex;
+    }
 
-        /* Main Text */
-        .main-text {
-            font-family: 'Monoton', cursive;
-            font-size: 225px;
-            text-align: left;
-            margin-left: 0px;
-            line-height: 225px;
-            margin-top: -50px;
-        }
+    .menu a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+    }
 
-        /* Skills Section */
-        .skills-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 80px;
-            position: relative;
-        }
+    #menu-toggle {
+      display: none;
+    }
 
-        .skills-title {
-            font-size: 55px;
-            font-family: 'Monomaniac One', sans-serif;
-            margin-bottom: 20px;
-        }
+    .menu-icon {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+    }
 
-        .divider {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            width: 3px;
-            height: 60%;
-            background-color: white;
-            transform: translateX(-50%);
-        }
+    .menu-icon div {
+      height: 4px;
+      background-color: white;
+      border-radius: 2px;
+    }
 
-        .skills-container {
-            width: 80%;
-            display: flex;
-            height: 60%;
-        }
+    section {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      scroll-snap-align: start;
+    }
 
-        .skills-left {
-            flex: 1;
-        }
+    .main-text {
+      font-family: 'Monoton', cursive;
+      font-size: 225px;
+      text-align: left;
+      margin-left: -290px;
+      line-height: 225px;
+      margin-top: -50px;
+    }
 
-        .skills-right {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 35px;
-            text-align: center;
-        }
-    </style>
+    .skills-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 80px;
+      position: relative;
+    }
+
+    .skills-title {
+      font-size: 55px;
+      font-family: 'Monomaniac One', sans-serif;
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      width: 3px;
+      height: 60%;
+      background-color: white;
+      transform: translateX(-50%);
+    }
+
+    .skills-container {
+      width: 80%;
+      display: flex;
+      height: 60%;
+    }
+
+    .item_container {
+      width: 480px;
+      height: 480px;
+      background-color: white;
+    }
+
+    .skills-left {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .skills-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 35px;
+      text-align: center;
+    }
+
+    /* 414x896 (iPhone XR/11) */
+    @media (max-width: 430px) and (max-height: 900px) {
+      .main-text {
+        font-size: 50px;
+        line-height: 50px;
+        margin-left: 10px;
+        margin-top: 20px;
+        text-align: left;
+      }
+      .header{
+        width: 100%;
+      }
+      .menu {
+        display: none;
+        flex-direction: column;
+        background-color: black;
+        
+        padding: 10px;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+      }
+
+      .menu a {
+        margin: 10px 0;
+        font-size: 18px;
+        border-bottom: 1px solid white;
+      }
+
+      #menu-toggle:checked + .menu-icon + .menu {
+        display: flex;
+      }
+
+      .menu-icon {
+        display: flex;
+      }
+
+      .header {
+        padding: 10px 20px;
+      }
+
+      .name {
+        font-size: 18px;
+      }
+
+      .skills-title {
+        font-size: 40px;
+      }
+
+      .divider {
+        height: 40%;
+      }
+
+      .skills-container {
+        flex-direction: column;
+        height: auto;
+        gap: 30px;
+      }
+
+      .skills-left,
+      .skills-right {
+        flex: none;
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+      }
+
+      .item_container {
+        width: 280px;
+        height: 280px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header (Fixed, Always Visible) -->
-    <div class="header">
-        <div class="name"><b>Bhushitha Hashan</b></div>
-        <div class="menu">
-            <a href="#home">Home</a>
-            <a href="#skills">Skills</a>
-            <a href="#work">Work</a>
-            <a href="#contact">Contact</a>
-        </div>
+  <div class="header">
+    <div class="name"><b>Bhushitha Hashan</b></div>
+
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon">
+      <div></div>
+      <div></div>
+      <div></div>
+    </label>
+
+    <div class="menu">
+      <a href="#home">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
     </div>
-    <div class="book">
-        <!-- Home Section -->
+  </div>
+
+  <div class="book">
     <section id="home">
-        <div class="main-text">
-            I'm a <br> Software <br> Developer.
-        </div>
+      <div class="main-text">
+        I'm a <br /> Software <br /> Developer.
+      </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="skills-section">
-        <div class="skills-title">SKILLS</div>
-        <div class="divider"></div>
-        <div class="skills-container">
-            <div class="skills-left"></div>
-            <div class="skills-right">
-                I'm proficient in <br>
-                JAVA, <br>
-                HTML, <br>
-                CSS, <br>
-                & Spring Framework.
-            </div>
+      <div class="skills-title">SKILLS</div>
+      <div class="divider"></div>
+      <div class="skills-container">
+        <div class="skills-left">
+          <div class="item_container">
+            <div class="item1"></div>
+            <div class="item2"></div>
+            <div class="item3"></div>
+            <div class="item4"></div>
+          </div>
         </div>
+        <div class="skills-right">
+          I'm proficient in <br />
+          JAVA, <br />
+          HTML, <br />
+          CSS, <br />
+          & Spring Framework.
+        </div>
+      </div>
     </section>
 
-    <!-- Work Section -->
     <section id="work">
-        <h1>Work Experience</h1>
+      <h1>Work Experience</h1>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
-        <h1>Contact Me!!</h1>
+      <h1>Contact Me!!</h1>
     </section>
-    </div>
-    
+  </div>
 
 </body>
 </html>
