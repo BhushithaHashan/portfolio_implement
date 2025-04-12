@@ -1,138 +1,568 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Meera+Inimai&family=Monoton&family=Monomaniac+One&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Meera+Inimai&family=Monoton&family=Monomaniac+One&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            background-color: black;
-            color: white;
-            font-family: 'Meera Inimai', sans-serif;
-            height: 100vh;
-            overflow-x: hidden;
-            display: grid;
-            grid-template-rows: auto 1fr;
-        }
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
 
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 22px;
-            padding: 20px;
-            background-color: black;
-            z-index: 1000;
-        }
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Meera Inimai', sans-serif;
+      height: 100vh;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
 
-        .menu {
-            display: flex;
-            gap: 15px;
-        }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: black;
+      z-index: 1000;
+    }
 
-        .menu a {
-            color: white;
-            text-decoration: none;
-        }
+    .name {
+      font-size: 22px;
+    }
 
-        .menu-toggle {
-            display: none;
-        }
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      gap: 100px;
+    }
 
-        section {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+    .menu a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 0.9rem;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
 
-        .main-text {
-            font-family: 'Monoton', cursive;
-            font-size: 10vw;
-            line-height: 1.2;
-        }
+    .menu a:hover {
+      transform: scale(1.1);
+    }
 
-        .skills-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            justify-items: center;
-            padding: 50px;
-        }
+    #menu-toggle {
+      display: none;
+    }
 
-        .skills-title {
-            font-size: 4vw;
-            font-family: 'Monomaniac One', sans-serif;
-            grid-column: span 2;
-            text-align: center;
-        }
+    .menu-icon {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+    }
 
-        .skills-right {
-            font-size: 2vw;
-            text-align: center;
-        }
+    .menu-icon div {
+      height: 4px;
+      background-color: white;
+      border-radius: 2px;
+    }
 
-        @media (max-width: 768px) {
-            .menu {
-                display: none;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .skills-section {
-                grid-template-columns: 1fr;
-            }
-            .skills-right {
-                font-size: 4vw;
-            }
-        }
-    </style>
+    section {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      scroll-snap-align: start;
+    }
+
+    .main-text {
+      font-family: 'Monoton', cursive;
+      font-size: 225px;
+      text-align: left;
+      margin-left: -290px;
+      line-height: 225px;
+      margin-top: -50px;
+      animation: opacitymain 0.8s ease-in-out forwards;
+    }
+
+    @keyframes opacitymain {
+      0% { opacity: 0; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Skills Section */
+    .skills-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skills-title {
+      font-size: 55px;
+      font-family: 'Monomaniac One', sans-serif;
+      margin-bottom: 20px;
+      position: relative;
+      animation: dropAndScale 2s ease forwards;
+    }
+
+    @keyframes dropAndScale {
+      0% { top: 300px; transform: scale(600); opacity: 0; left: 1000px; }
+      30% { opacity: 0; top: 300px; }
+      50% { opacity: 1; top: 300px; transform: scale(1); }
+      75% { top: 0; opacity: 1; }
+    }
+
+    .divider {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      width: 3px;
+      height: 60%;
+      background-color: white;
+      transform: translateX(-50%);
+      opacity: 0;
+      animation: divider 1s ease-in-out 1s forwards;
+    }
+
+    @keyframes divider {
+      0% { height: 40%; opacity: 0; }
+      100% { height: 60%; opacity: 1; }
+    }
+
+    .skills-container {
+      width: 80%;
+      display: flex;
+      height: 60%;
+    }
+
+    .item_container {
+      width: 480px;
+      height: 480px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+
+    .item1, .item2, .item3, .item4 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: rotateY(90deg);
+      animation: flipIn 0.6s ease-out forwards;
+      backface-visibility: hidden;
+    }
+
+    .item1 { grid-column: 1/2; grid-row: 1/2; animation-delay: 1.5s; }
+    .item2 { grid-column: 2/3; grid-row: 2/3; animation-delay: 1.75s; }
+    .item3 { grid-column: 3/4; grid-row: 3/4; animation-delay: 2s; }
+    .item4 { grid-column: 4/5; grid-row: 4/5; animation-delay: 2.25s; }
+
+    @keyframes flipIn {
+      0% { transform: rotateY(90deg); opacity: 0; }
+      50% { transform: rotateY(0deg); opacity: 1; }
+      100% { transform: rotateY(0deg); opacity: 1; }
+    }
+
+    .skills-left {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: 50px;
+    }
+
+    .skills-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 35px;
+      text-align: center;
+      opacity: 0;
+      animation: appearcontent 1.5s ease-in-out 1.5s forwards;
+    }
+
+    @keyframes appearcontent {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Work Section */
+    .work-container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .work-title {
+      font-size: 55px;
+      font-family: 'Monomaniac One', sans-serif;
+      margin-top: 80px;
+      position: relative;
+      animation: dropAndScale 2s ease forwards;
+    }
+
+    .work-slider {
+      height: 500px;
+      width: 90vw;
+      max-width: 1200px;
+      margin: 100px auto 20px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid white;
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        #000000 10% 90%,
+        transparent
+      );
+    }
+
+    .slider-list {
+      display: flex;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      animation: slide 20s linear infinite;
+    }
+
+    .slider-list:hover {
+      animation-play-state: paused;
+    }
+
+    .item {
+      flex: 0 0 auto;
+      width: 400px;
+      height: 100%;
+      margin-right: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slideritem1 { background-color: yellow; }
+    .slideritem2 { background-color: orange; }
+    .slideritem3 { background-color: black; }
+    .slideritem4 { background-color: brown; }
+    .slideritem5 { background-color: violet; }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-100% - 20px)); }
+    }
+
+    /* ==================== */
+    /* RESPONSIVE BREAKPOINTS */
+    /* ==================== */
+
+    /* Mobile Small (320px) */
+    @media (max-width: 320px) {
+      .main-text {
+        font-size: 40px;
+        line-height: 45px;
+        margin-left: 5px;
+        margin-top: 15px;
+      }
+
+      .menu {
+        gap: 15px;
+        top: 50px;
+        right: 10px;
+      }
+
+      .menu a {
+        font-size: 14px;
+        margin: 0 8px;
+      }
+
+      .skills-title {
+        font-size: 32px;
+      }
+
+      .skills-right {
+        font-size: 18px;
+      }
+
+      .item_container {
+        width: 240px;
+        height: 240px;
+      }
+
+      .work-title {
+        font-size: 32px;
+        margin-top: 40px;
+      }
+
+      .work-slider {
+        height: 300px;
+        margin-top: 50px;
+      }
+
+      .item {
+        width: 280px;
+      }
+    }
+
+    /* Mobile Medium (375px) */
+    @media (min-width: 321px) and (max-width: 375px) {
+      .main-text {
+        font-size: 45px;
+        line-height: 50px;
+      }
+
+      .skills-title {
+        font-size: 36px;
+      }
+
+      .skills-right {
+        font-size: 20px;
+      }
+    }
+
+    /* Mobile Large (425px) */
+    @media (min-width: 376px) and (max-width: 425px) {
+      .main-text {
+        font-size: 50px;
+        line-height: 55px;
+      }
+
+      .skills-title {
+        font-size: 40px;
+      }
+
+      .skills-right {
+        font-size: 22px;
+      }
+    }
+
+    /* Tablet (768px) */
+    @media (min-width: 426px) and (max-width: 768px) {
+      .main-text {
+        font-size: 70px;
+        line-height: 80px;
+        margin-left: -30px;
+      }
+
+      .skills-title {
+        font-size: 45px;
+      }
+
+      .skills-container {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .skills-left, .skills-right {
+        width: 100%;
+      }
+
+      .skills-right {
+        font-size: 26px;
+        padding: 20px 0;
+      }
+
+      .item_container {
+        width: 350px;
+        height: 350px;
+      }
+
+      .work-title {
+        font-size: 45px;
+      }
+
+      .work-slider {
+        width: 85vw;
+      }
+    }
+
+    /* Laptop (1024px) */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .main-text {
+        font-size: 150px;
+        line-height: 160px;
+        margin-left: -150px;
+      }
+
+      .skills-title {
+        font-size: 50px;
+      }
+
+      .item_container {
+        width: 400px;
+        height: 400px;
+      }
+    }
+
+    /* Laptop Large (1440px) */
+    @media (min-width: 1025px) and (max-width: 1440px) {
+      .work-slider {
+        max-width: 1200px;
+      }
+    }
+
+    /* Desktop (1441px+) */
+    @media (min-width: 1441px) {
+      .work-slider {
+        max-width: 1400px;
+      }
+    }
+
+    /* Mobile Menu */
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+        flex-direction: column;
+        background-color: black;
+        padding: 10px;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+      }
+
+      .menu a {
+        font-size: 18px;
+        border-bottom: 1px solid white;
+        margin: 5px 0;
+      }
+
+      #menu-toggle:checked + .menu-icon + .menu {
+        display: flex;
+      }
+
+      .menu-icon {
+        display: flex;
+      }
+
+      .header {
+        padding: 10px 20px;
+      }
+
+      .name {
+        font-size: 18px;
+      }
+    }
+
+    /* Landscape Orientation */
+    @media (max-height: 500px) and (orientation: landscape) {
+      section {
+        height: auto;
+        min-height: 100vh;
+        padding: 80px 0;
+      }
+
+      .main-text {
+        font-size: 80px;
+        line-height: 90px;
+        margin-top: 0;
+      }
+
+      .skills-section {
+        padding-top: 40px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="header">
+    <div class="name"><b>Bhushitha Hashan</b></div>
 
-    <div class="header">
-        <div class="name"><b>Bhushitha Hashan</b></div>
-        <div class="menu">
-            <a href="#home">Home</a>
-            <a href="#skills">Skills</a>
-            <a href="#work">Work</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <div class="menu-toggle">☰</div>
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon">
+      <div></div>
+      <div></div>
+      <div></div>
+    </label>
+
+    <div class="menu">
+      <a href="#home">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
     </div>
+  </div>
 
+  <div class="book">
     <section id="home">
-        <div class="main-text">I'm a <br> Software <br> Developer.</div>
+      <div class="main-text">
+        I'm a <br /> Software <br /> Developer.
+      </div>
     </section>
 
     <section id="skills" class="skills-section">
-        <div class="skills-title">SKILLS</div>
-        <div class="skills-right">
-            I'm proficient in <br> JAVA, <br> HTML, <br> CSS, <br> & Spring Framework.
+      <div class="skills-title">SKILLS</div>
+      <div class="divider"></div>
+      <div class="skills-container">
+        <div class="skills-left">
+          <div class="item_container">
+            <div class="item1">
+              <img width="90" height="90" src="https://img.icons8.com/ios/100/FFFFFF/html-5--v1.png" alt="html-5--v1"/>
+            </div>
+            <div class="item2">
+              <img width="90" height="90" src="https://img.icons8.com/external-tal-revivo-regular-tal-revivo/100/FFFFFF/external-cascading-style-sheets-language-used-for-describing-the-presentation-of-a-document-logo-regular-tal-revivo.png" alt="external-cascading-style-sheets-language-used-for-describing-the-presentation-of-a-document-logo-regular-tal-revivo"/>
+            </div>
+            <div class="item3">
+              <img width="90" height="90" src="https://img.icons8.com/external-tal-revivo-bold-tal-revivo/100/FFFFFF/external-java-is-a-general-purpose-programming-language-that-is-class-based-logo-bold-tal-revivo.png" alt="external-java-is-a-general-purpose-programming-language-that-is-class-based-logo-bold-tal-revivo"/>
+            </div>
+            <div class="item4">
+              <img width="90" height="90" src="https://img.icons8.com/external-tal-revivo-bold-tal-revivo/100/FFFFFF/external-linux-a-family-of-open-source-unix-like-operating-systems-based-on-the-linux-kernel-logo-bold-tal-revivo.png" alt="external-linux-a-family-of-open-source-unix-like-operating-systems-based-on-the-linux-kernel-logo-bold-tal-revivo"/>
+            </div>
+          </div>
         </div>
+        <div class="skills-right">
+          I'm proficient in <br />
+          JAVA, <br />
+          HTML, <br />
+          CSS, <br />
+          & Spring Framework.
+        </div>
+      </div>
     </section>
 
     <section id="work">
-        <h1>Work Experience</h1>
+      <div class="work-container">
+        <div class="work-title">MY WORK</div>
+        <div class="work-slider">
+          <div class="slider-list">
+            <div class="item slideritem1">Slide 1</div>
+            <div class="item slideritem2">Slide 2</div>
+            <div class="item slideritem3">Slide 3</div>
+            <div class="item slideritem4">Slide 4</div>
+            <div class="item slideritem5">Slide 5</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="contact">
-        <h1>Contact Me</h1>
+      <h1>Contact Me!!</h1>
     </section>
-
+  </div>
 </body>
 </html>
