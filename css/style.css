@@ -507,6 +507,13 @@ section {
     height: 100vh;
     overflow-y: scroll;
   }
+  .header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+  }
 
   section {
     height: 100vh;
@@ -580,7 +587,7 @@ section {
     font-size: 18px;
   }
 
-  .skills-title ,.work-title{
+  .skills-title ,.work-title,.contact-title{
     font-size: 40px;
   }
 
@@ -712,8 +719,42 @@ section {
 .item{
   top:100px
 }
+.contact-title{
+  text-align: center;
+  margin-bottom: 10px;
+}
+.about{
+  font-size: 20px;
+  font-family: 'Monomaniac One', sans-serif;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.icon{
+  height: 50px;
+  width: 50px;
+
+}
+.icon img{
+  height: 40px;
+  width: 40px;
+}
+.icon-container{
+  height: 100px;
+  width: 200px;
+  
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
   
 }
+.contact-sector{
+  height: 200px;
+  width: 300px;
+}
+  
+}
+
 
 @media (min-width: 600px) and (max-width: 900px) {
   .main-text {
