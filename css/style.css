@@ -518,6 +518,7 @@ section {
   section {
     height: 100vh;
     scroll-snap-align: start;
+    overflow-y: hidden;
   }
 
   .book {
